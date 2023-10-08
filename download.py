@@ -1,6 +1,5 @@
 import yt_dlp
 import json
-URLS = ["https://www.youtube.com/playlist?list=PLNBoDqHGQDfhPNBaKLcB6O0qM6ppiBwwV"]
 
 ydl_opts = {
     'format': 'mp3/bestaudio/best',
@@ -11,5 +10,9 @@ ydl_opts = {
     }]
 }
 
-with yt_dlp.YoutubeDL(ydl_opts) as ydl:
-	ydl.download(URLS)
+#with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+#	ydl.download(URLS)
+with open("playlist.txt",'r') as file:
+	for i in file.readlines():
+		with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+			ydl.download(i.strip())
